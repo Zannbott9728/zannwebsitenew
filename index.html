@@ -3,33 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sorry</title>
+  <title>Sorry olip</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       text-align: center;
-      background-color: #f5f5f5;
+      background-color: #f0f8ff;
       margin: 0;
-      padding: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     img {
-      width: 200px;
-      margin-top: 20px;
+      width: 150px;
+      margin: 20px 0;
+      border-radius: 10px;
     }
 
     h1 {
-      font-size: 24px;
-      margin: 20px 0;
+      font-size: 28px;
+      color: #333;
+    }
+
+    p {
+      font-size: 18px;
+      color: #555;
     }
 
     button {
       font-size: 18px;
-      padding: 10px 20px;
+      padding: 12px 20px;
       margin: 10px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
     }
 
     .green-button {
@@ -39,41 +55,28 @@
 
     .green-button:hover {
       background-color: #45a049;
+      transform: scale(1.1);
     }
 
     .moving-button {
       background-color: #ff5722;
       color: white;
-      position: relative;
-    }
-
-    .moving-button:hover {
-      animation: move 0.3s ease-in-out forwards;
-    }
-
-    @keyframes move {
-      0% {
-        transform: translateX(0);
-      }
-      50% {
-        transform: translateX(50px);
-      }
-      100% {
-        transform: translateX(-50px);
-      }
+      position: absolute;
     }
   </style>
 </head>
 <body>
-  <img src="https://via.placeholder.com/200" alt="Boneka Minta Maaf">
-  <h1>akuu mintaa maaf</h1>
-  <p>haii, maafin aku dongg plisssss, jangan marah pliss aku harus apa dahh biar ga badmood lagi kmu maafin pliss</p>
+  <div class="container">
+    <img src="https://via.placeholder.com/150?text=Cowok+Minta+Maaf" alt="haii">
+    <h1>aku Minta Maaf 🙏</h1>
+    <p>haii cwekk yang lagi ngambek, maafin aku donggg katanyaa sihh kalo orang ngambek atau marah tuhh nanti cepat tua tauuu, maafinn aku yahhh pliss syng ehhh, maafin yahh🙏🏻🥺.</p>
 
-  <!-- Tombol untuk kirim ke WhatsApp -->
-  <button class="green-button" onclick="redirectToWhatsApp()">Yaa</button>
+    <!-- Tombol untuk kirim ke WhatsApp -->
+    <button class="green-button" onclick="redirectToWhatsApp()">Yaa</button>
 
-  <!-- Tombol pindah-pindah -->
-  <button class="moving-button" onmouseover="moveButton(this)">Gak!</button>
+    <!-- Tombol pindah-pindah -->
+    <button class="moving-button" id="movingButton" onclick="moveButton(this)">Gak!</button>
+  </div>
 
   <script>
     function redirectToWhatsApp() {
@@ -84,10 +87,22 @@
     }
 
     function moveButton(button) {
-      const randomX = Math.floor(Math.random() * 200) - 100; // Random gerak kiri/kanan
-      const randomY = Math.floor(Math.random() * 200) - 100; // Random gerak atas/bawah
-      button.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      const maxWidth = window.innerWidth - button.offsetWidth;
+      const maxHeight = window.innerHeight - button.offsetHeight;
+      const randomX = Math.floor(Math.random() * maxWidth);
+      const randomY = Math.floor(Math.random() * maxHeight);
+
+      button.style.left = randomX + "px";
+      button.style.top = randomY + "px";
     }
+
+    // Posisi awal tombol pindah-pindah
+    window.onload = () => {
+      const button = document.getElementById('movingButton');
+      button.style.left = "50%";
+      button.style.top = "50%";
+      button.style.transform = "translate(-50%, -50%)";
+    };
   </script>
 </body>
 </html>
